@@ -1,1 +1,2 @@
-# Exoplanet-Information
+# Planet-Api-App
+Get planets details

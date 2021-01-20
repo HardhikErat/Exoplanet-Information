@@ -4,10 +4,8 @@ import { createStackNavigator } from "react-navigation-stack";
 import HomeScreen from "./screens/Home";
 import DetailsScreen from "./screens/Details";
 
-export default class App extends React.Component {
-  render(){
-    return <AppContainer />;
-  }
+export default function App() {
+  return <AppContainer />;
 }
 
 const appStackNavigator = createStackNavigator(

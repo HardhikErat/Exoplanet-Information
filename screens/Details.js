@@ -5,9 +5,11 @@ import axios from "axios";
 export default class DetailsScreen extends Component {
   constructor(props) {
     super(props);
+    console.log("planet name ",this.props.navigation.getParam("planet_name") )
     this.state = {
       details: {},
       imagePath: "",
+     
       url: `http://localhost:5000/planet?name=${this.props.navigation.getParam(
         "planet_name"
       )}`
@@ -19,18 +21,21 @@ export default class DetailsScreen extends Component {
   }
   getDetails = () => {
     const { url } = this.state;
+    console.log("request url " + url)
     axios
       .get(url)
       .then(response => {
         this.setDetails(response.data.data);
       })
       .catch(error => {
-        Alert.alert(error.message);
+        alert(error.message);
       });
   };
 
   setDetails = planetDetails => {
+    console.log("Inside setDetails")
     const planetType = planetDetails.planet_type;
+    console.log("plnt type ", planetType)
     let imagePath = "";
     switch (planetType) {
       case "Gas Giant":
@@ -57,6 +62,7 @@ export default class DetailsScreen extends Component {
 
   render() {
     const { details, imagePath } = this.state;
+    console.log("Planet details ", details.specifications)
     if (details.specifications) {
       return (
         <View style={styles.container}>
@@ -102,6 +108,13 @@ export default class DetailsScreen extends Component {
           </Card>
         </View>
       );
+    }
+    else{
+      <View style={[styles.cardItem, { flexDirection: "column" }]}>
+      <Text>No resp</Text>
+     
+    </View>
+
     }
     return null;
   }
